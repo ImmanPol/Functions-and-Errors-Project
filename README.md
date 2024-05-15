@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a simple Solidity smart contract that demonstrates the usage of `require()`, `assert()`, and `revert()` statements. These statements are essential for enforcing preconditions, validating internal state, and handling exceptional cases in smart contract development.
+This repository contains a simple Solidity smart contract named `Iggy` that demonstrates the usage of `require()`, `assert()`, and `revert()` statements. These statements are essential for enforcing preconditions, validating internal state, and handling exceptional cases in smart contract development.
 
 ## Requirements
 
@@ -17,7 +17,7 @@ To interact with the smart contract, you'll need:
 2. Navigate to the project directory:
    cd solidity-assertions
 
-3. Open the `RequireAssertRevert.sol` file in your preferred Solidity development environment.
+3. Open the `Iggy.sol` file in your preferred Solidity development environment.
 
 4. Compile the smart contract.
 
