@@ -1,4 +1,4 @@
-# Solidity Smart Contract: Understanding require(), assert(), and revert()
+# Solidity Smart Contract: Require(), Assert(), and Revert()
 
 ## Overview
 
