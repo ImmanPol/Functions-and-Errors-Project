@@ -1,25 +1,48 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Iggy {
-    uint256 public myNumber;
+contract ValidationContract {
+    uint256 public totalValue;
+    address public owner;
 
-    function setNumber(uint256 _num) external {
-        // Validate input before making changes
-        require(_num != 0, "Number cannot be equal to zero");
-
-        // Perform the operation
-        uint256 newNumber = myNumber + _num;
-
-        // Validate internal state using assert
-        assert(newNumber > myNumber);
-
-        // Check if the operation exceeded a limit and revert if necessary
-        if (_num > 100) {
-            revert("The number surpassed the limit");
-        }
-
-        // Update the state variable
-        myNumber = newNumber;
+    constructor() {
+        owner = msg.sender;
+        totalValue = 0;
     }
+
+    // Modifier to check if the caller is the owner
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Caller is not the owner");
+        _;
+    }
+
+    // Function to add value with require check
+    function addValue(uint256 value) public onlyOwner {
+        require(value > 0, "Value must be greater than 0");
+        totalValue += value;
+    }
+
+    // Function to demonstrate assert usage
+    function assertTest(uint256 value) public pure {
+        // Assert is typically used to check for invariants
+        uint256 testValue = value * 2;
+        assert(testValue / 2 == value); // This should always be true
+    }
+
+    // Function to demonstrate revert usage
+    function revertExample(uint256 value) public pure {
+        if (value == 0) {
+            revert("Value cannot be zero");
+        }
+        // Other logic if value is not zero
+    }
+
+    // Critical function accessible only by the owner
+    function criticalFunction() public onlyOwner {
+        // Add critical functionality here
+        // For demonstration, let's just emit an event
+        emit CriticalFunctionExecuted(msg.sender);
+    }
+
+    event CriticalFunctionExecuted(address indexed caller);
 }
